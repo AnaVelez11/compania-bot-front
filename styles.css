@@ -1,0 +1,3049 @@
+/* =========================================
+   VARIABLES Y CONFIGURACIÓN BASE
+   ========================================= */
+:root {
+  --fondo: #fdfbf7;
+  --verde: #6f7d4e;
+  --texto: #3a3f2d;
+  --fondo-companeros: rgb(111 125 78 / 20%);
+
+  /* Variables de compatibilidad para las otras pantallas */
+  --verde-oscuro: #3A3F2D;
+  --verde-oliva: #6F7D4E;
+  --verde-suave: rgba(111, 125, 78, 0.20);
+  --marfil: #FDFBF7;
+  --blanco: #FFFFFF;
+  --gris-texto: #666666;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 50px;
+  --fuente-principal: "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #eeede8;
+  color: var(--texto);
+  font-family: var(--fuente-principal);
+  padding: 20px;
+}
+
+/* Contenedor Principal */
+#app {
+  width: 480px;
+  height: 1073px;
+  flex-shrink: 0;
+  position: relative;
+  margin: auto;
+  background: var(--fondo);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+/* Manejo de Vistas */
+.vista {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+}
+
+.vista::-webkit-scrollbar {
+  display: none;
+}
+
+.vista.activa {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+
+/* =========================================
+   PANTALLA 1: BIENVENIDA
+   ========================================= */
+#vista-bienvenida {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.bienvenida {
+  width: 100%;
+  height: 100%;
+  padding: 56px 32px 40px;
+  background: var(--fondo);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.marca img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 416 / 251;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.companeros {
+  position: relative;
+  isolation: isolate;
+  height: 282px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 120px));
+  justify-content: center;
+  gap: 20px;
+  margin: 0 auto 40px auto;
+  width: 100%;
+}
+
+.companeros::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 2px;
+  left: 50%;
+  width: min(340px, 100%);
+  height: 264px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--fondo-companeros);
+}
+
+.companero {
+  min-width: 0;
+  margin: 65px 0 0;
+  text-align: center;
+}
+
+.companero--serena {
+  margin-top: 20px;
+}
+
+.companero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 120 / 152;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.companero figcaption {
+  margin-top: 12px;
+  color: var(--verde);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.mensaje-bienvenida {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.mensaje-bienvenida h1 {
+  margin: 0 auto;
+  color: var(--verde);
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  width: 100%;
+  max-width: 416px;
+}
+
+.descripcion {
+  margin: 20px auto 0;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--texto);
+  width: 100%;
+  max-width: 416px;
+}
+
+.aviso {
+  margin: 20px auto 0;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--texto);
+  opacity: 0.8;
+  width: 100%;
+  max-width: 416px;
+}
+
+.acciones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.boton-iniciar {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 64px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--verde);
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.boton-iniciar:hover {
+  background: #5d6a40;
+}
+
+.privacidad {
+  color: var(--verde);
+  font-size: 18px;
+  line-height: 1.4;
+  text-align: center;
+  text-underline-offset: 3px;
+  text-decoration: underline;
+  margin: 0 auto 40px auto;
+  width: 100%;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+
+}
+
+/* =========================================
+   ESTILOS DE LAS OTRAS PANTALLAS
+   ========================================= */
+/* Tipografía y textos generales */
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.titulo-seccion {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.titulo-saludo {
+  font-size: 28px;
+  margin-top: 16px;
+}
+
+.texto-descriptivo {
+  font-size: 16px;
+  color: var(--verde-oscuro);
+  opacity: 0.8;
+  margin-bottom: 24px;
+}
+
+.texto-pequeno {
+  font-size: 14px;
+  color: var(--gris-texto);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-2 {
+  margin-top: 16px;
+}
+
+.mt-4 {
+  margin-top: 32px;
+}
+
+.mb-2 {
+  margin-bottom: 16px;
+}
+
+.pt-4 {
+  padding-top: 32px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.mt-auto {
+  margin-top: auto;
+}
+
+/* Botones generales */
+.btn-primario {
+  background-color: var(--verde-oliva);
+  color: var(--blanco);
+  padding: 16px 24px;
+  border-radius: var(--radius-pill);
+  font-size: 18px;
+  font-weight: 700;
+  width: 100%;
+  transition: transform 0.1s, opacity 0.1s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primario:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
+.btn-grande {
+  padding: 20px 24px;
+  font-size: 20px;
+}
+
+.btn-texto {
+  color: var(--verde-oliva);
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.btn-icono {
+  font-size: 24px;
+  padding: 8px;
+  color: var(--verde-oscuro);
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.btn-opcion {
+  background-color: var(--blanco);
+  border: 2px solid var(--verde-suave);
+  color: var(--verde-oscuro);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  margin-bottom: 12px;
+  text-align: left;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.btn-opcion:active {
+  background-color: var(--verde-suave);
+}
+
+/* =========================================
+   PANTALLA 2: INICIO (todo bajo #vista-inicio)
+   ========================================= */
+#vista-inicio {
+  --borde-cabecera: #727c6c;
+  --fondo-tarjeta: #e8eee3;
+  --fondo-aviso: rgb(111 125 78 / 20%);
+}
+
+#vista-inicio h1,
+#vista-inicio h2,
+#vista-inicio p {
+  margin: 0;
+}
+
+#vista-inicio .inicio {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  background: var(--fondo);
+}
+
+#vista-inicio .icono {
+  display: block;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Cabecera */
+#vista-inicio .cabecera-inicio {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border-bottom: 1px solid var(--borde-cabecera);
+}
+
+#vista-inicio .identidad-inicio {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 56px;
+}
+
+#vista-inicio .avatar-inicio {
+  display: block;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+#vista-inicio .nombre-app {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 27px;
+}
+
+#vista-inicio .nombre-activo {
+  margin-top: 4px;
+  color: var(--verde);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+#vista-inicio .privacidad-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 56px;
+}
+
+#vista-inicio .privacidad-control p {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+#vista-inicio .interruptor {
+  position: relative;
+  flex: 0 0 104px;
+  width: 104px;
+  height: 56px;
+  padding: 0;
+  border: 2px solid var(--verde);
+  border-radius: 32px;
+  background: var(--verde);
+  color: #fff;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+
+#vista-inicio .interruptor-texto {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 60px;
+  text-align: center;
+  transform: translateY(-50%);
+  transition: left 0.25s;
+}
+
+#vista-inicio .interruptor-circulo {
+  position: absolute;
+  top: 50%;
+  left: 60px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translateY(-50%);
+  transition: left 0.25s, background 0.25s;
+}
+
+/* Estado apagado */
+#vista-inicio .interruptor[aria-checked="false"] {
+  background: var(--fondo);
+  color: var(--verde);
+}
+
+#vista-inicio .interruptor[aria-checked="false"] .interruptor-texto {
+  left: 40px;
+}
+
+#vista-inicio .interruptor[aria-checked="false"] .interruptor-circulo {
+  left: 8px;
+  background: var(--verde);
+}
+
+#vista-inicio .privacidad-aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--fondo-aviso);
+}
+
+#vista-inicio .privacidad-aviso .icono {
+  color: #294c38;
+}
+
+#vista-inicio .privacidad-aviso p {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* Contenido */
+#vista-inicio .contenido-inicio {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+}
+
+#vista-inicio .ideas {
+  margin-top: auto;
+}
+
+#vista-inicio .bienvenida-inicio h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#vista-inicio .bienvenida-inicio p {
+  margin-top: 12px;
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+/* Compañero actual */
+#vista-inicio .tarjeta-companero {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 20px;
+  border-radius: 24px;
+  background: var(--fondo-tarjeta);
+  box-shadow: inset 0 0 0 2px var(--verde);
+}
+
+#vista-inicio .companero-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+}
+
+#vista-inicio .retrato-inicio {
+  display: block;
+  flex: 0 0 112px;
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+  border: 0;
+  border-radius: 16px;
+}
+
+#vista-inicio .companero-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+#vista-inicio .etiqueta-actual {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+#vista-inicio .companero-texto h2 {
+  color: var(--verde);
+  font-size: 24px;
+  line-height: 29px;
+}
+
+#vista-inicio .aclaracion {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* Botones y sugerencias */
+#vista-inicio .boton,
+#vista-inicio .sugerencia {
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+#vista-inicio .boton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+#vista-inicio .boton-secundario {
+  min-height: 56px;
+  color: var(--verde);
+  background: var(--fondo);
+  box-shadow: inset 0 0 0 2px var(--verde);
+}
+
+#vista-inicio .ideas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#vista-inicio .ideas h2 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#vista-inicio .sugerencia {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 64px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--fondo);
+  color: var(--texto);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: left;
+}
+
+#vista-inicio .sugerencia .icono {
+  color: var(--texto);
+}
+
+#vista-inicio .sugerencia span {
+  flex: 1;
+  min-width: 0;
+}
+
+#vista-inicio .boton-primario {
+  min-height: 64px;
+  background: var(--verde);
+  color: #fff;
+}
+
+#vista-inicio .boton-secundario:hover,
+#vista-inicio .sugerencia:hover {
+  background: var(--fondo-tarjeta);
+}
+
+#vista-inicio .boton-primario:hover {
+  background: #5d6a40;
+}
+
+#vista-inicio button:focus-visible {
+  outline: 3px solid var(--texto);
+  outline-offset: 4px;
+}
+
+@media (max-width: 380px) {
+
+  #vista-inicio .cabecera-inicio,
+  #vista-inicio .contenido-inicio {
+    padding: 20px 16px;
+  }
+
+  #vista-inicio .nombre-app {
+    font-size: 20px;
+  }
+
+  #vista-inicio .privacidad-control p {
+    font-size: 16px;
+  }
+
+  #vista-inicio .tarjeta-companero {
+    padding: 16px;
+  }
+
+  #vista-inicio .retrato-inicio {
+    flex-basis: 80px;
+    width: 80px;
+    height: 80px;
+  }
+
+  #vista-inicio .etiqueta-actual,
+  #vista-inicio .aclaracion {
+    font-size: 16px;
+  }
+}
+
+/* Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider {
+  background-color: var(--verde-oliva);
+}
+
+input:checked+.slider:before {
+  transform: translateX(22px);
+}
+
+/* =========================================
+   PANTALLA 3: CONVERSACIÓN (todo bajo #vista-chat)
+   ========================================= */
+.simbolos {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+#vista-chat {
+  --texto-eco: #292d28;
+  --borde: #727c6c;
+  --fondo-usuario: rgb(213 191 161 / 30%);
+  --respuesta: #8a9b68;
+}
+
+#vista-chat h1,
+#vista-chat h2,
+#vista-chat p,
+#vista-chat figure {
+  margin: 0;
+}
+
+#vista-chat .icono {
+  display: block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#vista-chat .conversacion {
+  width: 100%;
+  min-height: 1411px;
+  background: var(--fondo);
+}
+
+/* Cabecera */
+#vista-chat .cabecera {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 103px;
+  padding: 24px;
+  border-bottom: 1px solid var(--borde);
+}
+
+#vista-chat .volver,
+#vista-chat .ayuda {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 16px;
+  background: var(--fondo);
+  color: var(--verde);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  cursor: pointer;
+}
+
+#vista-chat .volver {
+  width: 40px;
+  height: 40px;
+}
+
+#vista-chat .volver .icono {
+  width: 20px;
+  height: 20px;
+}
+
+#vista-chat .identidad {
+  flex: 1;
+  min-width: 0;
+}
+
+#vista-chat .identidad h1 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 27px;
+}
+
+#vista-chat .identidad p {
+  margin-top: 4px;
+  color: var(--verde);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+#vista-chat .ayuda {
+  min-width: 80px;
+  min-height: 48px;
+  padding: 12px;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Retrato */
+#vista-chat .contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding: 24px 24px 25px;
+}
+
+#vista-chat .retrato {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 432 / 320;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+#vista-chat .companero-chat figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+  color: var(--verde);
+}
+
+#vista-chat .companero-chat strong {
+  font-size: 22px;
+  line-height: 27px;
+}
+
+#vista-chat .companero-chat figcaption span {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+/* Mensajes */
+#vista-chat .burbuja {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border-radius: 24px;
+}
+
+#vista-chat .burbuja--eco {
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--borde);
+}
+
+#vista-chat .burbuja--usuario {
+  background: var(--fondo-usuario);
+  box-shadow: inset 0 0 0 2px var(--verde);
+}
+
+#vista-chat .interlocutor {
+  color: var(--verde);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+#vista-chat .mensaje-texto {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+#vista-chat .burbuja--eco .mensaje-texto {
+  color: var(--texto-eco);
+}
+
+#vista-chat .estado {
+  color: var(--verde);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+}
+
+/* Invitación y respuestas rápidas */
+#vista-chat .opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+#vista-chat .invitacion p {
+  margin-top: 8px;
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+#vista-chat .respuestas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#vista-chat .respuesta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 60px;
+  padding: 16px 20px;
+  border: 0;
+  border-radius: 16px;
+  color: var(--fondo);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  font: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+}
+
+#vista-chat .respuesta span {
+  flex: 1;
+  min-width: 0;
+}
+
+#vista-chat .respuesta .icono {
+  width: 20px;
+  height: 20px;
+}
+
+#vista-chat .respuesta--primera {
+  background: var(--respuesta);
+}
+
+#vista-chat .respuesta--segunda {
+  background: rgb(138 155 104 / 80%);
+}
+
+#vista-chat .respuesta--tercera {
+  background: rgb(138 155 104 / 60%);
+}
+
+#vista-chat .respuesta:hover {
+  background: var(--verde);
+}
+
+/* Controles inferiores */
+#vista-chat .controles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 20px 24px 24px;
+}
+
+#vista-chat .control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 108px;
+  padding: 10px 6px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--fondo);
+  color: var(--verde);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  font: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+#vista-chat .control .icono {
+  width: 54px;
+  height: 54px;
+  stroke-width: 1.35;
+}
+
+#vista-chat .control:hover,
+#vista-chat .volver:hover,
+#vista-chat .ayuda:hover {
+  background: #e8eee3;
+}
+
+#vista-chat button:focus-visible {
+  outline: 3px solid var(--texto);
+  outline-offset: 4px;
+}
+
+@media (max-width: 380px) {
+  #vista-chat .cabecera {
+    gap: 10px;
+    padding: 20px 16px;
+  }
+
+  #vista-chat .identidad h1 {
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  #vista-chat .identidad p {
+    font-size: 18px;
+  }
+
+  #vista-chat .ayuda {
+    min-width: 64px;
+    font-size: 16px;
+  }
+
+  #vista-chat .contenido {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  #vista-chat .companero-chat figcaption span {
+    font-size: 16px;
+  }
+
+  #vista-chat .burbuja {
+    padding: 20px;
+  }
+
+  #vista-chat .mensaje-texto,
+  #vista-chat .invitacion p {
+    font-size: 20px;
+  }
+
+  #vista-chat .respuesta {
+    padding: 16px;
+    font-size: 18px;
+  }
+
+  #vista-chat .controles {
+    gap: 10px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  #vista-chat .control {
+    font-size: 18px;
+  }
+}
+
+/* Hilo de mensajes y respuestas */
+#vista-chat .hilo {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+#vista-chat .invitacion p {
+  margin-top: 8px;
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+#vista-chat .respuestas {
+  margin-top: -9px;
+}
+
+#vista-chat .respuestas:empty {
+  display: none;
+}
+
+/* Indicador "escribiendo…" */
+#vista-chat .puntos {
+  display: flex;
+  gap: 6px;
+  padding: 8px 0;
+}
+
+#vista-chat .puntos span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--verde);
+  animation: bounce 1.2s infinite ease-in-out both;
+}
+
+#vista-chat .puntos span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+#vista-chat .puntos span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Caja de texto (tecla Escribir) */
+#vista-chat .entrada-texto {
+  display: none;
+  gap: 12px;
+  padding: 0 24px;
+}
+
+#vista-chat .entrada-texto input {
+  flex: 1;
+  min-width: 0;
+  min-height: 60px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--verde);
+  font: inherit;
+  font-size: 20px;
+  color: var(--texto);
+  outline: none;
+}
+
+#vista-chat .entrada-texto input:focus {
+  box-shadow: inset 0 0 0 3px var(--verde);
+}
+
+#vista-chat .btn-enviar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--verde);
+  color: #fff;
+  cursor: pointer;
+}
+
+#vista-chat .btn-enviar:hover {
+  background: #5d6a40;
+}
+
+/* Chat con cabecera y controles fijos; solo los mensajes hacen scroll */
+#vista-chat {
+  overflow: hidden;
+}
+
+#vista-chat .conversacion {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+#vista-chat .cabecera {
+  flex-shrink: 0;
+}
+
+#vista-chat .contenido {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+#vista-chat .contenido::-webkit-scrollbar {
+  display: none;
+}
+
+#vista-chat .entrada-texto {
+  flex-shrink: 0;
+  padding-bottom: 12px;
+}
+
+#vista-chat .controles {
+  flex-shrink: 0;
+}
+
+/* Avatar pequeño de la cabecera (solo con la vista oculta) */
+#vista-chat .identidad {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#vista-chat .identidad-texto {
+  min-width: 0;
+}
+
+#vista-chat .avatar {
+  display: none;
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Estado: vista del compañero oculta */
+#vista-chat.sin-vista .companero-chat {
+  display: none;
+}
+
+#vista-chat.sin-vista .avatar {
+  display: block;
+}
+
+@media (max-width: 479px) {
+  #vista-chat .identidad {
+    gap: 8px;
+  }
+
+  #vista-chat .avatar {
+    flex-basis: 40px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* =========================================
+   PANTALLA 4: ENTRADA DE VOZ (todo bajo #vista-voz)
+   ========================================= */
+#vista-voz {
+  --borde: #727c6c;
+}
+
+#vista-voz h1,
+#vista-voz h2,
+#vista-voz p {
+  margin: 0;
+}
+
+#vista-voz .icono {
+  display: block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#vista-voz .pantalla-voz {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  background: var(--fondo);
+}
+
+/* Estados */
+#vista-voz[data-estado="escuchando"] .solo-revisando,
+#vista-voz[data-estado="revisando"] .solo-escuchando {
+  display: none !important;
+}
+
+/* Cabecera */
+#vista-voz .cabecera-voz {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  min-height: 104px;
+  padding: 24px;
+  border-bottom: 1px solid var(--borde);
+}
+
+#vista-voz .volver,
+#vista-voz .ayuda {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 16px;
+  background: var(--fondo);
+  color: var(--verde);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  font: inherit;
+  cursor: pointer;
+}
+
+#vista-voz .volver {
+  width: 40px;
+  height: 40px;
+}
+
+#vista-voz .volver .icono {
+  width: 20px;
+  height: 20px;
+}
+
+#vista-voz .ayuda {
+  min-width: 80px;
+  min-height: 48px;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#vista-voz .identidad-voz {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+#vista-voz .avatar-voz {
+  display: block;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+#vista-voz .identidad-texto {
+  min-width: 0;
+}
+
+#vista-voz .nombre-app {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+#vista-voz .nombre-activo {
+  margin-top: 4px;
+  color: var(--verde);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+/* Contenido */
+#vista-voz .contenido-voz {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+}
+
+#vista-voz .entrada {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#vista-voz .entrada h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#vista-voz .descripcion-voz {
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+/* Panel de escucha */
+#vista-voz .escucha {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--verde-suave);
+  color: var(--verde);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  text-align: center;
+}
+
+#vista-voz .microfono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 32px;
+  background: var(--verde);
+  color: var(--fondo);
+}
+
+#vista-voz .microfono .icono {
+  width: 36px;
+  height: 36px;
+}
+
+#vista-voz .escucha h2 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+}
+
+#vista-voz .escucha p {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+#vista-voz .onda-voz {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+}
+
+#vista-voz .onda-voz span {
+  display: block;
+  width: 8px;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--verde);
+  transform: scaleY(var(--h));
+  animation: ondaVoz 1s ease-in-out infinite;
+}
+
+#vista-voz .onda-voz span:nth-child(1) {
+  --h: .30;
+  animation-delay: -.9s;
+}
+
+#vista-voz .onda-voz span:nth-child(2) {
+  --h: .60;
+  animation-delay: -.7s;
+}
+
+#vista-voz .onda-voz span:nth-child(3) {
+  --h: .85;
+  animation-delay: -.5s;
+}
+
+#vista-voz .onda-voz span:nth-child(4) {
+  --h: .50;
+  animation-delay: -.3s;
+}
+
+#vista-voz .onda-voz span:nth-child(5) {
+  --h: 1;
+  animation-delay: -.1s;
+}
+
+#vista-voz .onda-voz span:nth-child(6) {
+  --h: .70;
+  animation-delay: -.6s;
+}
+
+#vista-voz .onda-voz span:nth-child(7) {
+  --h: .40;
+  animation-delay: -.4s;
+}
+
+#vista-voz .onda-voz span:nth-child(8) {
+  --h: .80;
+  animation-delay: -.2s;
+}
+
+#vista-voz .onda-voz span:nth-child(9) {
+  --h: .50;
+  animation-delay: -.8s;
+}
+
+@keyframes ondaVoz {
+
+  0%,
+  100% {
+    transform: scaleY(var(--h));
+  }
+
+  50% {
+    transform: scaleY(calc(var(--h) * 0.45 + 0.1));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #vista-voz .onda-voz span {
+    animation: none;
+  }
+}
+
+/* Botones */
+#vista-voz .controles-voz {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#vista-voz .boton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 64px;
+  padding: 16px;
+  border: 0;
+  border-radius: 16px;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  cursor: pointer;
+}
+
+#vista-voz .boton--primario {
+  background: var(--verde);
+  color: #fff;
+}
+
+#vista-voz .boton--secundario {
+  background: var(--fondo);
+  color: var(--verde);
+  box-shadow: inset 0 0 0 2px var(--verde);
+}
+
+#vista-voz .boton--primario:hover {
+  background: #5d6a40;
+}
+
+#vista-voz .boton--secundario:hover,
+#vista-voz .volver:hover,
+#vista-voz .ayuda:hover {
+  background: #e8eee3;
+}
+
+/* Borrador */
+#vista-voz .borrador {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--borde);
+}
+
+#vista-voz .borrador-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 24px;
+}
+
+#vista-voz .borrador h2 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+#vista-voz .transcripcion {
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+#vista-voz .transcripcion.vacio {
+  opacity: .55;
+}
+
+#vista-voz .transcripcion-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--fondo);
+  color: var(--texto);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  font: inherit;
+  font-size: 20px;
+  line-height: 1.45;
+  resize: none;
+  outline: none;
+}
+
+#vista-voz .transcripcion-input:focus {
+  box-shadow: inset 0 0 0 3px var(--verde);
+}
+
+#vista-voz .guia-edicion {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+/* Envío */
+#vista-voz .acciones-voz {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 8px;
+}
+
+#vista-voz .guia-envio {
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+#vista-voz .boton--envio {
+  background: var(--verde);
+  color: #fff;
+}
+
+#vista-voz .boton--envio:disabled {
+  background: var(--fondo);
+  color: var(--verde);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  cursor: not-allowed;
+}
+
+#vista-voz .estado-envio {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+#vista-voz button:focus-visible,
+#vista-voz textarea:focus-visible {
+  outline: 3px solid var(--texto);
+  outline-offset: 4px;
+}
+
+@media (max-width: 479px) {
+  #vista-voz .cabecera-voz {
+    gap: 12px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  #vista-voz .identidad-voz {
+    gap: 8px;
+  }
+
+  #vista-voz .avatar-voz {
+    width: 40px;
+    height: 40px;
+  }
+
+  #vista-voz .nombre-app {
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  #vista-voz .ayuda {
+    min-width: 64px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  #vista-voz .contenido-voz {
+    padding: 24px 16px;
+  }
+
+  #vista-voz .escucha {
+    padding: 24px 16px;
+  }
+
+  #vista-voz .escucha p {
+    font-size: 16px;
+  }
+
+  #vista-voz .controles-voz {
+    gap: 12px;
+  }
+
+  #vista-voz .controles-voz .boton {
+    gap: 8px;
+    padding: 16px 12px;
+    font-size: 16px;
+  }
+
+  #vista-voz .borrador {
+    padding: 16px;
+  }
+}
+
+/* =========================================
+   PANTALLA 5: CAMBIO DE COMPAÑERO
+   ========================================= */
+#vista-seleccion {
+  --borde: #727c6c;
+}
+
+#vista-seleccion h1,
+#vista-seleccion h2,
+#vista-seleccion p {
+  margin: 0;
+}
+
+#vista-seleccion .icono {
+  display: block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#vista-seleccion .pantalla-sel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  background: var(--fondo);
+}
+
+/* Cabecera */
+#vista-seleccion .cabecera-sel {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  min-height: 104px;
+  padding: 24px;
+  border-bottom: 1px solid var(--borde);
+}
+
+#vista-seleccion .volver,
+#vista-seleccion .ayuda {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 16px;
+  background: var(--fondo);
+  color: var(--verde);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  font: inherit;
+  cursor: pointer;
+}
+
+#vista-seleccion .volver {
+  width: 40px;
+  height: 40px;
+}
+
+#vista-seleccion .volver .icono {
+  width: 20px;
+  height: 20px;
+}
+
+#vista-seleccion .ayuda {
+  min-width: 80px;
+  min-height: 48px;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#vista-seleccion .identidad-sel {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+#vista-seleccion .avatar-sel {
+  display: block;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+#vista-seleccion .identidad-texto {
+  min-width: 0;
+}
+
+#vista-seleccion .nombre-app {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+#vista-seleccion .nombre-activo {
+  margin-top: 4px;
+  color: var(--verde);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+/* Contenido */
+#vista-seleccion .contenido-sel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+}
+
+#vista-seleccion .seleccion {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#vista-seleccion .seleccion h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#vista-seleccion .companero-actual {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--verde-suave);
+}
+
+#vista-seleccion .etiqueta-actual {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+#vista-seleccion .actual-nombre {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+#vista-seleccion .descripcion-sel {
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+/* Opciones */
+#vista-seleccion .opciones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#vista-seleccion .opcion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 288px;
+  padding: 12px 8px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--fondo);
+  color: var(--texto);
+  box-shadow: inset 0 0 0 2px var(--borde);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+
+#vista-seleccion .retrato-sel {
+  display: block;
+  width: 112px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+#vista-seleccion .opcion-nombre {
+  display: block;
+  width: 100%;
+  min-height: 70px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+#vista-seleccion .opcion-estado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  color: var(--verde);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+#vista-seleccion .indicador {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--verde);
+  border-radius: 50%;
+  background: var(--fondo);
+}
+
+#vista-seleccion .opcion--elegida {
+  background: var(--verde-suave);
+  box-shadow: inset 0 0 0 3px var(--verde);
+}
+
+#vista-seleccion .opcion--elegida .indicador {
+  background: var(--verde);
+}
+
+#vista-seleccion .opcion:hover {
+  background: var(--verde-suave);
+}
+
+/* Aviso de privacidad */
+#vista-seleccion .aviso-privacidad {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: inset 0 0 0 2px var(--verde);
+}
+
+#vista-seleccion .aviso-privacidad .icono {
+  width: 28px;
+  height: 28px;
+  color: var(--verde);
+}
+
+#vista-seleccion .aviso-privacidad h2 {
+  color: var(--verde);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+#vista-seleccion .aviso-privacidad p {
+  margin-top: 8px;
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+/* Acciones */
+#vista-seleccion .acciones-sel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+#vista-seleccion .eleccion-pendiente {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+#vista-seleccion .boton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 64px;
+  padding: 16px;
+  border: 0;
+  border-radius: 16px;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  cursor: pointer;
+}
+
+#vista-seleccion .boton--primario {
+  background: var(--verde);
+  color: #fff;
+}
+
+#vista-seleccion .boton--secundario {
+  background: var(--fondo);
+  color: var(--verde);
+  box-shadow: inset 0 0 0 2px var(--verde);
+}
+
+#vista-seleccion .boton--primario:hover:not(:disabled) {
+  background: #5d6a40;
+}
+
+#vista-seleccion .boton--primario:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+#vista-seleccion .boton--secundario:hover,
+#vista-seleccion .volver:hover,
+#vista-seleccion .ayuda:hover {
+  background: #e8eee3;
+}
+
+#vista-seleccion button:focus-visible {
+  outline: 3px solid var(--texto);
+  outline-offset: 4px;
+}
+
+@media (max-width: 479px) {
+  #vista-seleccion .cabecera-sel {
+    gap: 10px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  #vista-seleccion .identidad-sel {
+    gap: 8px;
+  }
+
+  #vista-seleccion .identidad-sel .avatar-sel {
+    width: 40px;
+    height: 40px;
+  }
+
+  #vista-seleccion .nombre-app {
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  #vista-seleccion .ayuda {
+    min-width: 64px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  #vista-seleccion .contenido-sel {
+    padding: 24px 16px;
+  }
+
+  #vista-seleccion .seleccion h1 {
+    font-size: 26px;
+  }
+
+  #vista-seleccion .opciones {
+    gap: 8px;
+  }
+
+  #vista-seleccion .opcion {
+    min-height: 250px;
+    padding-right: 6px;
+    padding-left: 6px;
+  }
+
+  #vista-seleccion .opcion-nombre {
+    min-height: 54px;
+  }
+
+  #vista-seleccion .opcion-nombre,
+  #vista-seleccion .opcion-estado {
+    font-size: 16px;
+  }
+
+  #vista-seleccion .aviso-privacidad {
+    padding: 16px;
+  }
+
+  #vista-seleccion .aviso-privacidad p {
+    font-size: 18px;
+  }
+}
+
+/* =========================================
+   PANTALLA 6: CAMBIO CONFIRMADO (todo bajo #vista-confirmacion)
+   ========================================= */
+#vista-confirmacion {
+  --borde: #727c6c;
+}
+
+#vista-confirmacion h1,
+#vista-confirmacion h2,
+#vista-confirmacion p {
+  margin: 0;
+}
+
+#vista-confirmacion .icono {
+  display: block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#vista-confirmacion .pantalla-conf {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  background: var(--fondo);
+}
+
+/* Cabecera */
+#vista-confirmacion .cabecera-conf {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  min-height: 104px;
+  padding: 24px;
+  border-bottom: 1px solid var(--borde);
+}
+
+#vista-confirmacion .volver,
+#vista-confirmacion .ayuda {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 16px;
+  background: var(--fondo);
+  color: var(--verde);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  font: inherit;
+  cursor: pointer;
+}
+
+#vista-confirmacion .volver {
+  width: 40px;
+  height: 40px;
+}
+
+#vista-confirmacion .volver .icono {
+  width: 20px;
+  height: 20px;
+}
+
+#vista-confirmacion .ayuda {
+  min-width: 80px;
+  min-height: 48px;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#vista-confirmacion .identidad-conf {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+#vista-confirmacion .avatar-conf {
+  display: block;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+#vista-confirmacion .identidad-texto {
+  min-width: 0;
+}
+
+#vista-confirmacion .nombre-app {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+#vista-confirmacion .nombre-activo {
+  margin-top: 4px;
+  color: var(--verde);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+/* Contenido */
+#vista-confirmacion .contenido-conf {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+}
+
+#vista-confirmacion .confirmacion {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+#vista-confirmacion .confirmacion h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#vista-confirmacion .tarjeta-nueva {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--verde-suave);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  text-align: center;
+}
+
+#vista-confirmacion .retrato-conf {
+  display: block;
+  width: 140px;
+  height: 140px;
+  margin-bottom: 8px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+#vista-confirmacion .etiqueta-conf {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+#vista-confirmacion .nombre-nuevo {
+  color: var(--verde);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 34px;
+}
+
+#vista-confirmacion .aviso-aplicado {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--verde);
+}
+
+#vista-confirmacion .aviso-aplicado .icono {
+  width: 28px;
+  height: 28px;
+  color: var(--verde);
+}
+
+#vista-confirmacion .aviso-aplicado h2 {
+  color: var(--verde);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 22px;
+}
+
+#vista-confirmacion .aviso-aplicado p {
+  margin-top: 8px;
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+/* Acciones */
+#vista-confirmacion .acciones-conf {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#vista-confirmacion .boton-conf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 64px;
+  padding: 16px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--verde);
+  color: #fff;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#vista-confirmacion .boton-conf:hover {
+  background: #5d6a40;
+}
+
+#vista-confirmacion .nota-conf {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+#vista-confirmacion .volver:hover,
+#vista-confirmacion .ayuda:hover {
+  background: #e8eee3;
+}
+
+#vista-confirmacion button:focus-visible {
+  outline: 3px solid var(--texto);
+  outline-offset: 4px;
+}
+
+@media (max-width: 479px) {
+  #vista-confirmacion .cabecera-conf {
+    gap: 12px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  #vista-confirmacion .identidad-conf {
+    gap: 8px;
+  }
+
+  #vista-confirmacion .avatar-conf {
+    width: 40px;
+    height: 40px;
+  }
+
+  #vista-confirmacion .nombre-app {
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  #vista-confirmacion .ayuda {
+    min-width: 64px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  #vista-confirmacion .contenido-conf {
+    padding: 24px 16px;
+  }
+
+  #vista-confirmacion .aviso-aplicado p {
+    font-size: 18px;
+  }
+}
+
+/* =========================================
+   PANTALLA 7: POLÍTICAS DE PRIVACIDAD (todo bajo #vista-privacidad)
+   ========================================= */
+#vista-privacidad {
+  --borde: #727c6c;
+}
+
+#vista-privacidad h1,
+#vista-privacidad h2,
+#vista-privacidad p,
+#vista-privacidad ul {
+  margin: 0;
+}
+
+#vista-privacidad .icono {
+  display: block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#vista-privacidad .pantalla-priv {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  background: var(--fondo);
+}
+
+#vista-privacidad .cabecera-priv {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 104px;
+  padding: 24px;
+  border-bottom: 1px solid var(--borde);
+}
+
+#vista-privacidad .volver {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--fondo);
+  color: var(--verde);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  cursor: pointer;
+}
+
+#vista-privacidad .volver .icono {
+  width: 20px;
+  height: 20px;
+}
+
+#vista-privacidad .volver:hover {
+  background: #e8eee3;
+}
+
+#vista-privacidad .titulo-cabecera {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 27px;
+}
+
+#vista-privacidad .contenido-priv {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+#vista-privacidad .bloque-priv--info {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--borde);
+}
+
+#vista-privacidad .bloque-priv--info .icono {
+  width: 28px;
+  height: 28px;
+  color: var(--verde);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+#vista-privacidad .bloque-priv--info>div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+#vista-privacidad .bloque-priv--info h2 {
+  color: var(--verde);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+}
+
+#vista-privacidad .bloque-priv--info p {
+  font-size: 18px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+#vista-privacidad .intro-priv {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#vista-privacidad .intro-priv h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#vista-privacidad .intro-priv p {
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+#vista-privacidad .intro-priv .actualizado {
+  font-size: 16px;
+  opacity: .7;
+}
+
+#vista-privacidad .bloque-priv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--borde);
+}
+
+#vista-privacidad .bloque-priv h2 {
+  color: var(--verde);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+#vista-privacidad .bloque-priv p,
+#vista-privacidad .bloque-priv li {
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+#vista-privacidad .bloque-priv ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 22px;
+}
+
+#vista-privacidad .bloque-priv--destacado {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--verde-suave);
+  box-shadow: inset 0 0 0 2px var(--verde);
+}
+
+#vista-privacidad .bloque-priv--destacado .icono {
+  width: 28px;
+  height: 28px;
+  color: var(--verde);
+}
+
+#vista-privacidad .bloque-priv--destacado>div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#vista-privacidad .bloque-priv--alerta {
+  box-shadow: inset 0 0 0 3px var(--verde);
+}
+
+#vista-privacidad .boton-priv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 64px;
+  margin-top: 8px;
+  padding: 16px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--verde);
+  color: #fff;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#vista-privacidad .boton-priv:hover {
+  background: #5d6a40;
+}
+
+#vista-privacidad button:focus-visible {
+  outline: 3px solid var(--texto);
+  outline-offset: 4px;
+}
+
+@media (max-width: 479px) {
+  #vista-privacidad .cabecera-priv {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  #vista-privacidad .titulo-cabecera {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  #vista-privacidad .contenido-priv {
+    padding: 24px 16px;
+  }
+
+  #vista-privacidad .intro-priv p {
+    font-size: 18px;
+  }
+}
+
+/* =========================================
+   AJUSTES GLOBALES: tamaño de letra y contraste
+   ========================================= */
+/* El tamaño se aplica ampliando cada pantalla; el scroll interno absorbe el exceso */
+#app .vista>div,
+#app .vista>main {
+  zoom: var(--escala, 1);
+}
+
+#app.alto-contraste {
+  --verde: #3f4d22;
+  --verde-oliva: #3f4d22;
+  --texto: #14170d;
+  --verde-suave: rgb(63 77 34 / 18%);
+}
+
+#app.alto-contraste .vista {
+  --borde: #14170d;
+  --texto-eco: #14170d;
+  --respuesta: #3f4d22;
+}
+
+#app.alto-contraste #vista-chat .respuesta--primera,
+#app.alto-contraste #vista-chat .respuesta--segunda,
+#app.alto-contraste #vista-chat .respuesta--tercera {
+  background: var(--verde);
+}
+
+#app.alto-contraste .aviso {
+  opacity: 1;
+}
+
+/* =========================================
+   PANTALLA 8: AYUDA (todo bajo #vista-ayuda)
+   ========================================= */
+#vista-ayuda {
+  --borde: #727c6c;
+}
+
+#vista-ayuda h1,
+#vista-ayuda h2,
+#vista-ayuda p,
+#vista-ayuda ul {
+  margin: 0;
+}
+
+#vista-ayuda .icono {
+  display: block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#vista-ayuda .pantalla-ay {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  background: var(--fondo);
+}
+
+#vista-ayuda .cabecera-ay {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 104px;
+  padding: 24px;
+  border-bottom: 1px solid var(--borde);
+}
+
+#vista-ayuda .volver {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--fondo);
+  color: var(--verde);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  cursor: pointer;
+}
+
+#vista-ayuda .volver .icono {
+  width: 20px;
+  height: 20px;
+}
+
+#vista-ayuda .volver:hover {
+  background: #e8eee3;
+}
+
+#vista-ayuda .titulo-cabecera {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 27px;
+}
+
+#vista-ayuda .contenido-ay {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+#vista-ayuda .contenido-ay h1 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#vista-ayuda .ay-bloque {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--borde);
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+#vista-ayuda .ay-bloque h2 {
+  color: var(--verde);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+#vista-ayuda .ay-urgente {
+  background: var(--verde-suave);
+  box-shadow: inset 0 0 0 2px var(--verde);
+}
+
+#vista-ayuda .ay-llamar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 56px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: #fdfbf7;
+  color: var(--texto);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#vista-ayuda .ay-llamar strong {
+  color: var(--verde);
+  font-size: 22px;
+}
+
+#vista-ayuda .ay-llamar:hover {
+  background: #e8eee3;
+}
+
+#vista-ayuda .ay-fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 600;
+}
+
+#vista-ayuda .ay-switch {
+  position: relative;
+  flex: 0 0 72px;
+  width: 72px;
+  height: 40px;
+  padding: 0;
+  border: 2px solid var(--verde);
+  border-radius: 32px;
+  background: var(--fondo);
+  cursor: pointer;
+  transition: background .2s;
+}
+
+#vista-ayuda .ay-switch::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--verde);
+  transition: left .2s, background .2s;
+}
+
+#vista-ayuda .ay-switch[aria-checked="true"] {
+  background: var(--verde);
+}
+
+#vista-ayuda .ay-switch[aria-checked="true"]::after {
+  left: 36px;
+  background: #fff;
+}
+
+#vista-ayuda .ay-seg {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 8px;
+}
+
+#vista-ayuda .ay-seg button {
+  min-height: 52px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--fondo);
+  color: var(--verde);
+  box-shadow: inset 0 0 0 2px var(--verde);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#vista-ayuda .ay-seg button[aria-pressed="true"] {
+  background: var(--verde);
+  color: #fff;
+}
+
+#vista-ayuda .ay-seg.desactivado {
+  opacity: .45;
+  pointer-events: none;
+}
+
+#vista-ayuda .ay-primario,
+#vista-ayuda .ay-secundario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 64px;
+  padding: 16px;
+  border: 0;
+  border-radius: 16px;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#vista-ayuda .ay-primario {
+  background: var(--verde);
+  color: #fff;
+}
+
+#vista-ayuda .ay-primario:hover {
+  background: #5d6a40;
+}
+
+#vista-ayuda .ay-secundario {
+  background: var(--fondo);
+  color: var(--verde);
+  box-shadow: inset 0 0 0 2px var(--verde);
+}
+
+#vista-ayuda .ay-secundario:hover {
+  background: #e8eee3;
+}
+
+#vista-ayuda details {
+  border-top: 1px solid var(--verde-suave);
+}
+
+#vista-ayuda summary {
+  padding: 10px 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#vista-ayuda details ul {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 0 8px 22px;
+}
+
+#vista-ayuda details p {
+  padding-bottom: 8px;
+}
+
+#vista-ayuda button:focus-visible,
+#vista-ayuda a:focus-visible,
+#vista-ayuda summary:focus-visible {
+  outline: 3px solid var(--texto);
+  outline-offset: 3px;
+}
+
+@media (max-width: 479px) {
+  #vista-ayuda .cabecera-ay {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  #vista-ayuda .contenido-ay {
+    padding: 24px 16px;
+  }
+}
+
+
+
+/* Animaciones */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes wave {
+
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(1.8);
+  }
+}
+
+@keyframes bounce {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* Ajustes Responsive */
+@media (max-width: 479px) {
+  body {
+    padding: 0;
+    background: var(--fondo);
+  }
+
+  #app {
+    width: 100%;
+    height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .bienvenida {
+    border-radius: 0;
+  }
+
+  .companeros {
+    gap: 12px;
+  }
+
+  .mensaje-bienvenida h1 {
+    font-size: clamp(28px, 7.9vw, 38px);
+  }
+}
